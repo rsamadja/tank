@@ -16,7 +16,7 @@ class Explosion
   
   def self.load_sound(window)
     Gosu::Sample.new(
-	  window, media_path('explosion,mp3'))
+	  window, media_path('explosion.ogg'))
   end
   
   def initialize(animation, sound, x, y)
@@ -43,7 +43,7 @@ class Explosion
     @done ||= @current_frame == @animation.size
   end
   
-  def sound
+  def sound_play
     @sound.play
   end
   
@@ -71,11 +71,11 @@ class GameWindow < Gosu::Window
 	@background = Gosu::Image.new(
 	  self, BACKGROUND, false)
 	@music = Gosu::Song.new(
-	  self, media_path('menu_music.mp3'))
+	  self, media_path('menu_music.ogg'))
 	@music.volume = 0.5
 	@music.play(true)
 	@animation = Explosion.load_animation(self)
-	@sound = Explosion.load_animation(self)
+	@sound = Explosion.load_sound(self)
 	@explosions = []
   end
   
